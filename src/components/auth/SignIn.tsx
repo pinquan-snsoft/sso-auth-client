@@ -6,6 +6,7 @@ import { Label } from "@/components/base/label";
 import { useState } from "react";
 import { useEffect } from "react";
 import { BASE_API_URL, DEFAULT_SIGN_IN_REDIRECT_URL, FPMS_REFRESH_TOKEN_NAME } from "@/lib/constants";
+import { signIn } from "@/lib/grpc-request";
 
 const SignInForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const [signInData, setSignInData] = useState({ username: "", password: "" });
@@ -34,22 +35,15 @@ const SignInForm = ({ className, ...props }: React.ComponentProps<"div">) => {
         password: signInData.password,
       };
       // Make API call to NestJS backend to login
-      const response = await fetch(`${BASE_API_URL}/auth/sign-in`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(reqData),
-      });
-
-      if (response.ok) {
-        const redirectUrl = new URLSearchParams(window.location.search).get(
-          "redirect"
-        );
-        window.location.href = redirectUrl || DEFAULT_SIGN_IN_REDIRECT_URL;
-      }
-      setError("");
+      const response = await signIn(reqData.username, reqData.password);
+      console.log("🚀 ~ handleSubmit ~ response:", response);
+      // if (response === 200) {
+        // const redirectUrl = new URLSearchParams(window.location.search).get(
+        //   "redirect"
+        // );
+        // window.location.href = redirectUrl || DEFAULT_SIGN_IN_REDIRECT_URL;
+      // }
+      // setError("");
     } catch (error) {
       console.error(error);
       setError("Sign in failed. Please check your credentials.");

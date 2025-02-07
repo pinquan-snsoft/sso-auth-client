@@ -9,4 +9,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    port: 3000, // Development server port
+  },
+  preview: {
+    port: 3000, // Production preview port
+  },
 });
