@@ -5,7 +5,7 @@ import { Input } from "@/components/base/input";
 import { Label } from "@/components/base/label";
 import { useState } from "react";
 import { useEffect } from "react";
-import {  DEFAULT_SIGN_IN_REDIRECT_URL, FPMS_REFRESH_TOKEN_NAME } from "@/lib/constants";
+import { FPMS_REFRESH_TOKEN_NAME } from "@/lib/constants";
 import api from "@/services/api";
 
 const SignInForm = ({ className, ...props }: React.ComponentProps<"div">) => {
@@ -41,7 +41,7 @@ const SignInForm = ({ className, ...props }: React.ComponentProps<"div">) => {
         const redirectUrl = new URLSearchParams(window.location.search).get(
           "redirect"
         );
-        window.location.href = redirectUrl || DEFAULT_SIGN_IN_REDIRECT_URL;
+        window.location.href = redirectUrl || import.meta.env.VITE_DEFAULT_SIGN_IN_REDIRECT_URL;
       }
       setError("");
     } catch (error) {
