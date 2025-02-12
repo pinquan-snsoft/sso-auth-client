@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "auth-client:build": "tsc && vite build",
+    "build": "tsc && vite build",
+    "auth-client:build": "tsc && vite build --mode development",
+    "auth-client:build:staging": "tsc && vite build --mode staging",
+    "auth-client:build:production": "tsc && vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "tailwind:init": "tailwindcss init -p"
