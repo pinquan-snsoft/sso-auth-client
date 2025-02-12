@@ -37,12 +37,12 @@ const SignInForm = ({ className, ...props }: React.ComponentProps<"div">) => {
       // Make API call to NestJS backend to login
       const response = await api.post("/sign-in", reqData);
       console.log("🚀 ~ handleSubmit ~ response:", response);
-      if (response) {
-        const redirectUrl = new URLSearchParams(window.location.search).get(
-          "redirect"
-        );
-        window.location.href = redirectUrl || import.meta.env.VITE_DEFAULT_SIGN_IN_REDIRECT_URL;
-      }
+      // if (response) {
+      //   const redirectUrl = new URLSearchParams(window.location.search).get(
+      //     "redirect"
+      //   );
+      //   window.location.href = redirectUrl || import.meta.env.VITE_DEFAULT_SIGN_IN_REDIRECT_URL;
+      // }
       setError("");
     } catch (error) {
       console.error(error);
